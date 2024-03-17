@@ -25,3 +25,7 @@ addBtn.addEventListener('click', function () {
     alert = 'Enter the correct task';
   }
 });
+
+taskBar.addEventListener("click", function(event){
+  event.target.classList.toggle("green");
+});
