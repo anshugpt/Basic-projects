@@ -31,7 +31,8 @@ function checkAns(idx){
             setTimeout(levelUp, 500);
         }
     } else {
-        h2.innerHTML = "Game over please press any key to start!";
+        h2.innerHTML = `Game over, <b>Your score was ${level}</b> <br> please press any key to start!`;
+        reset();
     }
 }
 
@@ -59,4 +60,15 @@ function levelUp(){
     let btn = document.querySelector(`.${btns[randomIdx]}`);
 
     flashBtn(btn);
+}
+
+function reset(){
+    started = false;
+    gameSeq = [];
+    userSeq = [];
+    level = 0;
+    document.body.classList.add("end");
+    setTimeout(function(){
+        document.body.classList.remove("end");
+    }, 200);
 }
