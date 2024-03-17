@@ -1,4 +1,5 @@
 const h2 = document.querySelector("h2");
+const allBtns = document.querySelectorAll(".btn");
 
 let gameSeq = [];
 let userSeq = [];
@@ -14,11 +15,26 @@ document.addEventListener("keypress", function(){
     }
 });
 
+allBtns.forEach(function(btn){
+    btn.addEventListener("click", btnPress);
+});
+
+function btnPress(){
+    flashUser(this);
+}
+
 function flashBtn(btn){
-    document.querySelector(`.${btn}`).classList.add("flash");
+    btn.classList.add("flash");
     setTimeout(function(){
-        document.querySelector(`.${btn}`).classList.remove("flash");
-    }, 1000);
+        btn.classList.remove("flash");
+    }, 300);
+}
+
+function flashUser(btn){
+    btn.classList.add("flash");
+    setTimeout(function(){
+        btn.classList.remove("flash");
+    }, 300);
 }
 
 function levelUp(){
@@ -26,6 +42,7 @@ function levelUp(){
     h2.innerHTML = `Level ${level}`;
 
     let randomIdx = Math.floor(Math.random()*4);
+    let btn = document.querySelector(`.${btns[randomIdx]}`);
 
-    flashBtn(btns[randomIdx]);
+    flashBtn(btn);
 }
