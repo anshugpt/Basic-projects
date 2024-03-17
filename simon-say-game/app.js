@@ -21,6 +21,18 @@ allBtns.forEach(function(btn){
 
 function btnPress(){
     flashUser(this);
+    userSeq.push(this.getAttribute("id"));
+    checkAns(userSeq.length-1);
+}
+
+function checkAns(idx){
+    if(userSeq[idx] == gameSeq[idx]){
+        if(userSeq.length == gameSeq.length){
+            setTimeout(levelUp, 500);
+        }
+    } else {
+        h2.innerHTML = "Game over please press any key to start!";
+    }
 }
 
 function flashBtn(btn){
@@ -31,17 +43,19 @@ function flashBtn(btn){
 }
 
 function flashUser(btn){
-    btn.classList.add("flash");
+    btn.classList.add("userflash");
     setTimeout(function(){
-        btn.classList.remove("flash");
-    }, 300);
+        btn.classList.remove("userflash");
+    }, 200);
 }
 
 function levelUp(){
+    userSeq = [];
     level++;
     h2.innerHTML = `Level ${level}`;
 
     let randomIdx = Math.floor(Math.random()*4);
+    gameSeq.push(btns[randomIdx]);
     let btn = document.querySelector(`.${btns[randomIdx]}`);
 
     flashBtn(btn);
