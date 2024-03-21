@@ -33,6 +33,7 @@ btn.addEventListener("click", async function(e){
         addHumidity(res);
         addStatus(res);
         addDescription(res);
+        addvisibility(res);
         } else {
             cityName.value = '';
         }
