@@ -4,6 +4,7 @@ const tempe = document.querySelector("#temp");
 const humidity = document.querySelector("#humidity");
 const wedStatus = document.querySelector("#status");
 const description = document.querySelector("#description");
+const visibility = document.querySelector("#visibility");
 
 let city;
 let key = "&appid=4ac6915bb3d75a87c4661776308bde55";
@@ -12,7 +13,7 @@ let wedUrl = "https://api.openweathermap.org/data/2.5/weather?q=";
 async function getData(url){
     try {
         let data = await axios.get(url);
-    // console.log(data);
+    console.log(data);
     return data;
     } catch {
         return false;
@@ -22,7 +23,7 @@ async function getData(url){
 btn.addEventListener("click", async function(e){
     e.preventDefault();
     city = cityName.value;
-    console.log("into the btn");
+    // console.log("into the btn");
     if(validate(city)){
         let validUrl = wedUrl+city+key;
 
@@ -58,9 +59,13 @@ function addHumidity(res){
 }
 
 function addStatus(res){
-    wedStatus.innerHTML = `Status - ${res.data.weather.main}`;
+    wedStatus.innerHTML = `Status - ${res.data.weather[0].main}`;
 }
 
 function addDescription(res){
-    description.innerHTML = `Description - ${res.data.weather.description}`;
+    description.innerHTML = `Description - ${res.data.weather[0].description}`;
+}
+
+function addvisibility(res){
+    visibility.innerHTML = `Visibility - ${res.data.visibility} meter`;
 }
