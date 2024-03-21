@@ -1,0 +1,16 @@
+h1 {
+    background-color: aquamarine;
+    
+}
+
+#btn {
+    background-color: greenyellow;
+    border-radius: 3px;
+}
+
+.data {
+    background-color: cadetblue;
+    border: 2px solid black;
+    margin: 5px;
+    border-radius: 5px;
+}
