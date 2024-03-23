@@ -25,11 +25,25 @@ const singleBox = document.querySelector("#single");
 
 singleBox.addEventListener("mousemove", (event) => {
     // console.log(`X -> ${event.clientX} & Y -> ${event.clientY}`);
-    if(event.clientX>=0 && event.clientX<=125){
+    let location = singleBox.getBoundingClientRect();
+    let inside = event.clientX - location.left;
+    if(inside < location.width/2){
         // left box
-        singleBox.style.backgroundColor = `rgb(${2550/event.clientX}, 0, 0)`;
+        let range = gsap.utils.mapRange(0, location.width/2, 255, 0, inside);
+        gsap.to(singleBox, {
+            backgroundColor: `rgb(${range}, 0, 0)`,
+            ease: Power4,
+        });
     } else {
         // right box
-        singleBox.style.backgroundColor = `rgb(0, 0, ${event.clientX-50})`;
+        let range2 = gsap.utils.mapRange(location.width/2, location.width, 0, 255, inside);
+        gsap.to(singleBox, {
+            backgroundColor: `rgb(0, 0, ${range2})`,
+            ease: Power4,
+        });
     }
 });
+
+// function mapRangeFunction(){
+//     let range = gasp.utils.mapRange(0, 125, 10, 255, )
+// }
