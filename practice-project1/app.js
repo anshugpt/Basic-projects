@@ -43,7 +43,3 @@ singleBox.addEventListener("mousemove", (event) => {
         });
     }
 });
-
-// function mapRangeFunction(){
-//     let range = gasp.utils.mapRange(0, 125, 10, 255, )
-// }
